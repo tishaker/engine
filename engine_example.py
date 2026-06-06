@@ -1,9 +1,6 @@
 import tkinter as tk
 import time
-<<<<<<< HEAD
-=======
 from engine_outputs import Engine_Output, Engine_fap
->>>>>>> 5b366992ab60d5d8e61bb5785b46ddc3e525eed4
 
 class Vector2:
     """Custom math class to handle object positions and physics."""
@@ -26,15 +23,12 @@ class GameObject:
         self.position.y += self.velocity.y * delta_time
 
 class Engine:
-<<<<<<< HEAD
-=======
     """Buddy, this shit is actually genius, I just wanna goon on our new engine>)"""
     engine1 = Engine_Output("Engine1", 10, 5)
     engine1.engine_strength_output()
     engine_fap1 = Engine_fap("FapEngine", 8, 4, 100)
     engine_fap1.engine_strength_output()
 
->>>>>>> 5b366992ab60d5d8e61bb5785b46ddc3e525eed4
     """The core engine pipeline handling windows, inputs, loops, and rendering."""
     def __init__(self):
         self.root = tk.Tk()
@@ -42,11 +36,7 @@ class Engine:
         
         # Create a raw visual canvas
         self.canvas_width = 800
-<<<<<<< HEAD
         self.canvas_height = 800
-=======
-        self.canvas_height = 600
->>>>>>> 5b366992ab60d5d8e61bb5785b46ddc3e525eed4
         self.canvas = tk.Canvas(self.root, width=self.canvas_width, height=self.canvas_height, bg="black")
         self.canvas.pack()
 
@@ -56,11 +46,7 @@ class Engine:
         self.root.bind("<KeyRelease>", lambda e: self.keys.__setitem__(e.keysym, False))
 
         # Scene Data
-<<<<<<< HEAD
         self.player = GameObject(400, 400, 40, 40, "lime")
-=======
-        self.player = GameObject(400, 300, 40, 40, "lime")
->>>>>>> 5b366992ab60d5d8e61bb5785b46ddc3e525eed4
         self.last_time = time.time()
 
     def process_input(self):
