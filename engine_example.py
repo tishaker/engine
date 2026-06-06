@@ -1,6 +1,6 @@
 import tkinter as tk
 import time
-from engine_outputs import Engine_new
+from engine_outputs import Engine_Output, Engine_fap
 
 class Vector2:
     """Custom math class to handle object positions and physics."""
@@ -23,9 +23,13 @@ class GameObject:
         self.position.y += self.velocity.y * delta_time
 
 class Engine:
-    """The core engine pipeline handling windows, inputs, loops, and rendering."""
-    engine1 = Engine_new("Engine1", 10, 5)
+    """Buddy, this shit is actually genius, I just wanna goon on our new engine>)"""
+    engine1 = Engine_Output("Engine1", 10, 5)
     engine1.engine_strength_output()
+    engine_fap1 = Engine_fap("FapEngine", 8, 4, 100)
+    engine_fap1.engine_strength_output()
+
+    """The core engine pipeline handling windows, inputs, loops, and rendering."""
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("My Pure Python Engine")
