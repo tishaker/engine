@@ -1,5 +1,6 @@
 import tkinter as tk
 import time
+from engine_outputs import Engine_new
 
 class Vector2:
     """Custom math class to handle object positions and physics."""
@@ -23,6 +24,8 @@ class GameObject:
 
 class Engine:
     """The core engine pipeline handling windows, inputs, loops, and rendering."""
+    engine1 = Engine_new("Engine1", 10, 5)
+    engine1.engine_strength_output()
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("My Pure Python Engine")

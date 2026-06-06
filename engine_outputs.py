@@ -8,5 +8,4 @@ class Engine_new:
         print(f"The engine strength output is: {self.aura * self.power}")
         return self.aura * self.power
     
-engine1 = Engine_new("Engine1", 10, 5)
-engine1.engine_strength_output()
+
