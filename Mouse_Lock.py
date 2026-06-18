@@ -1,7 +1,6 @@
 import tkinter as tk
 import time
 
-
 class Vector2:
     """Custom math class to handle object positions and physics."""
     def __init__(self, x=0.0, y=0.0):
@@ -37,27 +36,41 @@ class Engine:
         self.root.bind("<KeyPress>", lambda e: self.keys.__setitem__(e.keysym, True))
         self.root.bind("<KeyRelease>", lambda e: self.keys.__setitem__(e.keysym, False))
 
-        self.player = GameObject(400, 300, 40, 40, "lime")
+        self.player = GameObject(400, 300, 10, 10, "lime")
+        
+        self.painted_blocks = []
+        
         self.last_time = time.time()
 
         self.canvas.bind("<Motion>", self.on_mouse_move)
+        self.canvas.bind("<Button-1>", self.on_mouse_click)
 
     def on_mouse_move(self, event):
         self.player.position.x = event.x
         self.player.position.y = event.y
+        
+    def on_mouse_click(self, event):
+        new_block = GameObject(event.x, event.y, 10, 10, "white")
+        self.painted_blocks.append(new_block)
 
     def render(self):
         # Completely clear the canvas for the new frame
         self.canvas.delete("all")
+        
+        for block in self.painted_blocks:
+            x1 = block.position.x - (block.width / 2)
+            y1 = block.position.y - (block.height / 2)
+            x2 = block.position.x + (block.width / 2)
+            y2 = block.position.y + (block.height / 2)
+            self.canvas.create_rectangle(x1, y1, x2, y2, fill=block.color, outline="")
         
         # Render the game object based on its custom spatial coordinates
         x1 = self.player.position.x - (self.player.width / 2)
         y1 = self.player.position.y - (self.player.height / 2)
         x2 = self.player.position.x + (self.player.width / 2)
         y2 = self.player.position.y + (self.player.height / 2)
-        
+
         self.canvas.create_rectangle(x1, y1, x2, y2, fill=self.player.color, outline="")
-        self.canvas.bind("<Motion>", self.on_mouse_move)
 
     def run_loop(self):
         # Strict delta time tracking to ensure consistent speeds
@@ -69,7 +82,7 @@ class Engine:
         self.render()
 
         # Request the engine to run this loop again in ~16 milliseconds (~60 FPS)
-        self.root.after(16, self.run_loop)
+        self.root.after(8, self.run_loop)
 
     def start(self):
         self.run_loop()
